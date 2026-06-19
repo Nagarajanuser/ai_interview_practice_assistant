@@ -1,0 +1,306 @@
+// Color definitions
+$primary-indigo: #6366f1;
+$indigo-glow: rgba(99, 102, 241, 0.15);
+$primary-dark-slate: #0f172a;
+$slate-border: rgba(226, 232, 240, 0.8);
+$emerald-green: #10b981;
+
+.max-width-md {
+  max-width: 680px;
+}
+
+.max-width-sm {
+  max-width: 480px;
+}
+
+.btn-indigo {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.25s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    color: #ffffff;
+  }
+  
+  &:disabled {
+    opacity: 0.65;
+    background: #6366f1;
+  }
+}
+
+.btn-outline-indigo {
+  color: #6366f1;
+  border-color: #6366f1;
+  font-weight: 500;
+  transition: all 0.25s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #6366f1;
+    color: #ffffff;
+  }
+}
+
+.bg-slate {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.bg-slate-subtle {
+  background-color: #f8fafc;
+}
+
+.font-serif {
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.text-dark-slate {
+  color: #1e293b;
+}
+
+// Progress Bar Customization
+.progress {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+}
+
+.progress-bar-indigo {
+  background: linear-gradient(90deg, #6366f1 0%, #4f46e5 100%);
+  border-radius: 10px;
+}
+
+// State Card Glow Rings
+.icon-pulse-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+
+  .pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: $indigo-glow;
+    animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  .icon-sphere {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  }
+
+  &.success {
+    .pulse-ring { background-color: rgba(16, 185, 129, 0.15); }
+    .icon-sphere {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+  }
+
+  &.danger {
+    .pulse-ring { background-color: rgba(239, 68, 68, 0.15); }
+    .icon-sphere {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+  }
+}
+
+// Interviewer Avatar Animation
+.interviewer-header {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.avatar-circle-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+
+  .avatar-wave-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(99, 102, 241, 0.4);
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  .avatar-face {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #1e293b;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: #818cf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  &.speaking {
+    .avatar-wave-ring {
+      animation: avatarPulse 1.5s ease-out infinite;
+    }
+    .avatar-face {
+      border-color: #6366f1;
+      color: #ffffff;
+      background-color: rgba(99, 102, 241, 0.1);
+    }
+  }
+}
+
+// Waveform Box & Gradient Area
+.bg-light-gradient {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.border-dashed {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-color: #cbd5e1 !important;
+}
+
+.mic-inactive-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #cbd5e1;
+    transform: scale(1.05);
+  }
+}
+
+// Voice Waveform Bouncing Bars
+.voice-wave-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 36px;
+  padding: 0 10px;
+
+  .wave-bar {
+    width: 4px;
+    background-color: $emerald-green;
+    border-radius: 10px;
+    min-height: 4px;
+    height: 100%;
+    
+    // Keyframe heights
+    &.bar-1 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.1s; }
+    &.bar-2 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.3s; }
+    &.bar-3 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.5s; }
+    &.bar-4 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.7s; }
+    &.bar-5 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.2s; }
+    &.bar-6 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.4s; }
+    &.bar-7 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.6s; }
+    &.bar-8 { animation: waveBounce 1.2s ease-in-out infinite; animation-delay: 0.8s; }
+  }
+
+  &.static {
+    .wave-bar {
+      background-color: #94a3b8;
+      height: 6px;
+      animation: none;
+    }
+  }
+}
+
+// Micro Indicator Dots
+.pulse-indicator-dot {
+  width: 8px;
+  height: 8px;
+  background-color: $emerald-green;
+  border-radius: 50%;
+  display: inline-block;
+  animation: dotPulse 1.5s infinite;
+}
+
+// Form elements
+.transcript-textarea {
+  resize: vertical;
+  min-height: 110px;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+  color: #1e293b;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+
+  &:focus {
+    border-color: #818cf8;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+  }
+}
+
+// General Utilities / Animations
+.blink-animation {
+  animation: textBlink 1.5s infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+// KEYFRAMES
+@keyframes pulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes avatarPulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes waveBounce {
+  0%, 100% { height: 10%; }
+  50% { height: 100%; }
+}
+
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes textBlink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
