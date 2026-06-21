@@ -9,6 +9,12 @@ export const INTERVIEW_ROUTES: Routes = [
             .then(m => m.InterviewProgress)
     },
     {
+        path: 'feedback/:session_id',
+        loadComponent: () =>
+        import('./pages/session-feedback/session-feedback')
+            .then(m => m.SessionFeedback)
+    },
+    {
         path: 'start',
         loadComponent: () =>
         import('./pages/interview-start/interview-start')

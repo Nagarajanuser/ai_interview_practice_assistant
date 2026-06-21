@@ -1,0 +1,103 @@
+<div class="admin-container py-5">
+  <div class="container">
+    
+    <!-- BACK TO DASHBOARD -->
+    <div class="mb-3">
+      <a routerLink="/admin" class="btn btn-sm btn-link text-secondary p-0 mb-2 d-inline-flex align-items-center text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        </svg>
+        Back to Dashboard
+      </a>
+    </div>
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <div>
+        <h1 class="fw-bold mb-1 tracking-tight text-white">Job Roles Manager</h1>
+        <p class="text-indigo-light mb-0">Configure available Job Roles and map relevant dynamic Topics to them.</p>
+      </div>
+      <a routerLink="/admin/roles/add" class="btn btn-indigo px-4 py-2.5 rounded-3 border-0 d-inline-flex align-items-center shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+        </svg>
+        Create Job Role
+      </a>
+    </div>
+
+    <!-- ERROR BLOCK -->
+    @if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-4 shadow p-4 mb-4 fade-in" role="alert">
+        <p class="mb-0">{{ errorMessage() }}</p>
+      </div>
+    }
+
+    <!-- LOADING SPINNER -->
+    @if (loading()) {
+      <div class="card border-0 custom-card p-5 text-center fade-in rounded-4">
+        <div class="d-flex flex-column align-items-center py-5">
+          <div class="spinner-border text-indigo mb-3" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h5 class="fw-bold mb-0 text-white">Loading roles...</h5>
+        </div>
+      </div>
+    } @else {
+      
+      <!-- ROLES TABLE -->
+      <div class="card border-0 custom-card rounded-4 overflow-hidden shadow-lg fade-in">
+        <div class="table-responsive">
+          <table class="table table-dark table-hover border-0 align-middle mb-0">
+            <thead>
+              <tr class="text-indigo-light border-bottom border-secondary">
+                <th scope="col" class="px-4 py-3">Job Role Title</th>
+                <th scope="col" class="py-3">Mapped Topics</th>
+                <th scope="col" class="px-4 py-3 text-end" style="width: 180px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (roles().length === 0) {
+                <tr>
+                  <td colspan="3" class="text-center py-5 text-muted">No job roles configured in the system.</td>
+                </tr>
+              }
+              @for (role of roles(); track role.name) {
+                <tr class="border-bottom border-dark-slate">
+                  <td class="px-4 fw-semibold text-white py-3">{{ role.name }}</td>
+                  <td class="py-3">
+                    <div class="d-flex flex-wrap gap-2">
+                      @if (role.topics && role.topics.length > 0) {
+                        @for (topic of role.topics; track topic) {
+                          <span class="badge rounded-pill bg-success-dark text-success px-2.5 py-1.5 small fw-semibold">
+                            {{ topic }}
+                          </span>
+                        }
+                      } @else {
+                        <span class="text-muted small">No topics mapped</span>
+                      }
+                    </div>
+                  </td>
+                  <td class="px-4 text-end py-3">
+                    <div class="d-inline-flex gap-2">
+                      <a [routerLink]="['/admin/roles/edit', role.name]" class="btn btn-sm btn-outline-light rounded-3 d-inline-flex align-items-center p-2" title="Edit Role">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.5-.5V9h-.5a.5.5 0 0 1-.5-.5V8h-.5a.5.5 0 0 1-.5-.5V7h-.5a.5.5 0 0 1-.5-.5V6h-.5a.5.5 0 0 1-.5-.5V5h-.5a.5.5 0 0 1-.5-.5V4h-.5a.5.5 0 0 1-.5-.5V3h-.5a.5.5 0 0 1-.5-.5V2h-.5a.5.5 0 0 1-.5-.5V1h-.5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                      </a>
+                      <button (click)="deleteRole(role.name)" class="btn btn-sm btn-outline-danger rounded-3 d-inline-flex align-items-center p-2" title="Delete Role">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

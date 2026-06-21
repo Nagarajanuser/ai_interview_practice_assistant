@@ -1,0 +1,115 @@
+<div class="form-container py-5">
+  <div class="container max-width-md">
+    
+    <!-- BACK TO DASHBOARD -->
+    <div class="mb-4">
+      <a routerLink="/admin" class="btn btn-sm btn-link text-secondary p-0 mb-2 d-inline-flex align-items-center text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        </svg>
+        Back to Dashboard
+      </a>
+      <h2 class="fw-bold tracking-tight text-white mb-1">Create Interview Session</h2>
+      <p class="text-secondary">Generate and assign a new interview session to a candidate user based on customizable criteria.</p>
+    </div>
+
+    <!-- ERROR BLOCK -->
+    @if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-3 p-3 mb-4 fade-in" role="alert">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <!-- FORM CARD -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+      <form (ngSubmit)="createSession()" #sessionForm="ngForm" class="p-4 p-md-5">
+        
+        <!-- SELECT USER / CANDIDATE -->
+        <div class="mb-4">
+          <label for="candidateUser" class="form-label fw-semibold">Select Candidate User <span class="text-danger">*</span></label>
+          <select id="candidateUser" name="candidateUser" class="form-select rounded-3" required 
+                  [(ngModel)]="selectedUserId" #userCtrl="ngModel"
+                  [class.is-invalid]="userCtrl.invalid && userCtrl.touched">
+            <option value="" disabled selected>Choose a candidate...</option>
+            @for (user of usersList(); track user.user_id) {
+              <option [value]="user.user_id">{{ user.name }} ({{ user.emailid }})</option>
+            }
+          </select>
+          <div class="invalid-feedback">A candidate user must be selected.</div>
+        </div>
+
+        <!-- SELECT TOPIC OR JOB ROLE -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="topic" class="form-label fw-semibold">Select Topic (Optional)</label>
+            <select id="topic" name="topic" class="form-select rounded-3" [(ngModel)]="selectedTopic">
+              <option value="">Any Topic</option>
+              @for (topic of topicsList(); track topic) {
+                <option [value]="topic">{{ topic }}</option>
+              }
+            </select>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="jobRole" class="form-label fw-semibold">Select Job Role (Optional)</label>
+            <select id="jobRole" name="jobRole" class="form-select rounded-3" [(ngModel)]="selectedJobRole">
+              <option value="">Any Job Role</option>
+              @for (role of jobRolesList(); track role) {
+                <option [value]="role">{{ role }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- ROW 3: DIFFICULTY & QUESTIONS LIMIT -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="difficulty" class="form-label fw-semibold">Difficulty Level (Optional)</label>
+            <select id="difficulty" name="difficulty" class="form-select rounded-3" [(ngModel)]="selectedDifficulty">
+              <option value="">Any Difficulty</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          
+          <div class="col-md-6">
+            <label for="limit" class="form-label fw-semibold">Number of Questions <span class="text-danger">*</span></label>
+            <select id="limit" name="limit" class="form-select rounded-3" required [(ngModel)]="questionLimit">
+              <option [value]="3">3 Questions</option>
+              <option [value]="5">5 Questions</option>
+              <option [value]="10">10 Questions</option>
+              <option [value]="15">15 Questions</option>
+              <option [value]="20">20 Questions</option>
+              <option value="All">All Questions</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="text-secondary small mt-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle me-1" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+          </svg>
+          Based on the selected Topic and/or Job Role, the system will select matching questions from the repository.
+        </p>
+
+        <!-- FORM ACTIONS -->
+        <div class="d-flex justify-content-end gap-3 border-top pt-4 mt-5">
+          <a routerLink="/admin" class="btn btn-outline-secondary px-4 py-2.5 rounded-3">Cancel</a>
+          <button type="submit" class="btn btn-indigo px-5 py-2.5 rounded-3 border-0 shadow-sm" 
+                  [disabled]="sessionForm.invalid || submitting()">
+            @if (submitting()) {
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Generating...
+            } @else {
+              Create Session
+            }
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

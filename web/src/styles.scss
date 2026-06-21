@@ -1,1 +1,241 @@
 /* You can add global styles to this file, and also import other style files */
+
+.auth-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.98) 90%), #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.brand-logo-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.bg-glass-card {
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  .form-label {
+    letter-spacing: 0.025em;
+  }
+
+  .input-group {
+    transition: all 0.2s ease;
+  }
+
+  .input-group-text, .form-control {
+    border-color: rgba(99, 102, 241, 0.25) !important;
+    color: #f8fafc;
+    background-color: rgba(15, 23, 42, 0.25);
+    
+    &::placeholder {
+      color: rgba(165, 180, 252, 0.4) !important;
+    }
+  }
+
+  .form-control:focus {
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    border-color: #818cf8 !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2) !important;
+  }
+
+  .input-group:focus-within {
+    .input-group-text, .form-control {
+      border-color: #818cf8 !important;
+    }
+  }
+}
+
+.text-indigo-light {
+  color: #a5b4fc;
+}
+
+.text-indigo-link {
+  color: #818cf8;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #a5b4fc;
+    text-decoration: underline !important;
+  }
+}
+
+.btn-indigo {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+    color: #ffffff;
+  }
+  
+  &:disabled {
+    opacity: 0.65;
+    background: #6366f1;
+  }
+}
+
+.max-width-sm {
+  max-width: 450px;
+}
+
+.text-danger-light {
+  color: #fda4af;
+  font-size: 0.825em;
+  margin-top: 0.25rem;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------- */
+/* GLOBAL DARK THEME OVERRIDES                          */
+/* ---------------------------------------------------- */
+
+body {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+// Cards
+.card {
+  background: rgba(30, 41, 59, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #f8fafc !important;
+}
+
+// Text Inputs, Textareas, Selects
+.form-control, .form-select {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+
+  &:focus {
+    background-color: rgba(15, 23, 42, 0.85) !important;
+    color: #ffffff !important;
+    border-color: #818cf8 !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25) !important;
+  }
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
+  }
+}
+
+// Placeholders global
+::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+select option {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+// Labels and text variations
+.form-label, label {
+  color: #a5b4fc !important;
+}
+
+.text-secondary, .text-muted {
+  color: #94a3b8 !important;
+}
+
+.text-dark-slate {
+  color: #cbd5e1 !important;
+}
+
+h1, h2, h3, h4, h5, h6, .text-white {
+  color: #ffffff !important;
+}
+
+// Tables
+.table {
+  color: #ffffff !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.03) !important;
+  --bs-table-border-color: rgba(255, 255, 255, 0.08) !important;
+
+  thead th {
+    background-color: rgba(30, 41, 59, 0.7) !important;
+    color: #a5b4fc !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+    }
+  }
+
+  td {
+    color: #f8fafc !important;
+  }
+}
+
+// Custom Modals
+.custom-modal-card {
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+
+  input, select, textarea {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+  }
+}
+
+// Difficulty Badges
+.badge.bg-success, .badge.text-success {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+}
+.badge.bg-warning, .badge.text-warning {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+.badge.bg-danger, .badge.text-danger {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+// Custom Navbar Glassmorphism
+.custom-navbar {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}

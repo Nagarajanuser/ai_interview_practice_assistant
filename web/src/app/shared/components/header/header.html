@@ -23,13 +23,55 @@
           </a>
         </li>
         <li class="nav-item mx-1">
-          <a class="nav-link nav-btn d-inline-flex align-items-center" routerLink="/interview" routerLinkActive="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill me-1" viewBox="0 0 16 16">
-              <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.586l2 2a1 1 0 0 0 1.414 0l2-2H14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm5 4h5a.5.5 0 0 1 0 1H7a.5.5 0 0 1 0-1zm0 2h5a.5.5 0 0 1 0 1H7a.5.5 0 0 1 0-1zm-3-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V6z"/>
+          <a class="nav-link nav-btn d-inline-flex align-items-center" routerLink="/admin" routerLinkActive="active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill me-1" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.268-2.9.76-1.07.5-1.933 1.153-2.4 1.9A8.6 8.6 0 0 0 1.5 6c0 4.841 3.544 8.37 6.166 9.774a.5.5 0 0 0 .668-.668C10.96 13.51 14.5 9.842 14.5 5c0-1.29-.39-2.5-1.2-3.34-.467-.747-1.33-1.4-2.4-1.9C9.843.268 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915V9a.5.5 0 0 1-1 0V7.915A1.5 1.5 0 0 1 8 5"/>
             </svg>
-            Interview
+            Admin
           </a>
         </li>
+
+
+        <!-- USER PROFILE DROPDOWN -->
+        @if (user) {
+          <li class="nav-item dropdown ms-lg-3 mt-2 mt-lg-0">
+            <button class="btn dropdown-toggle avatar-btn d-flex align-items-center justify-content-center p-0" 
+                    type="button" id="avatarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar-circle">
+                @if (user.photo) {
+                  <img [src]="user.photo" class="avatar-img" alt="Avatar">
+                } @else {
+                  {{ getUserInitials() }}
+                }
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow border-0 mt-2 fade-in" aria-labelledby="avatarDropdown">
+              <li class="dropdown-header text-indigo-light">
+                Logged in as <strong class="text-white">{{ user.name }}</strong>
+              </li>
+              <li><hr class="dropdown-divider bg-secondary"></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" routerLink="/dashboard/profile">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg>
+                  My Profile
+                </a>
+              </li>
+              <li><hr class="dropdown-divider bg-secondary"></li>
+              <li>
+                <button class="dropdown-item text-danger d-flex align-items-center" (click)="onLogout()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right me-2" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                  </svg>
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </li>
+        }
       </ul>
     </div>
   </div>

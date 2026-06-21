@@ -1,0 +1,29 @@
+.max-width-md {
+  max-width: 720px;
+}
+
+.form-control, .form-select {
+  border-color: #cbd5e1;
+  padding: 0.75rem 1rem;
+  color: #1e293b;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+  
+  &:focus {
+    border-color: #818cf8;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

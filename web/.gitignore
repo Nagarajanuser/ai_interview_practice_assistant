@@ -1,5 +1,18 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+.env
+venv/
+__pycache__/
+.vscode/
+logs/
+uploads/
+reports/
+chroma_db/
+vectorstore/
+cache/
+*.db
+
+
 # Compiled output
 /dist
 /tmp

@@ -1,6 +1,8 @@
 .custom-navbar {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1060;
 }
 
 .brand-icon-wrapper {
@@ -60,3 +62,79 @@
     box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
   }
 }
+
+.avatar-btn {
+  background: none;
+  border: none;
+  &:focus, &:active {
+    outline: none;
+    box-shadow: none;
+  }
+  &.dropdown-toggle::after {
+    display: none !important; // Hide caret
+  }
+}
+
+.avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+
+  &:hover {
+    border-color: #a5b4fc;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.45);
+  }
+}
+
+.dropdown-menu-dark {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+
+  .dropdown-header {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    color: #94a3b8;
+  }
+
+  .dropdown-item {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: #a5b4fc;
+    }
+
+    &.text-danger:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+    }
+  }
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+

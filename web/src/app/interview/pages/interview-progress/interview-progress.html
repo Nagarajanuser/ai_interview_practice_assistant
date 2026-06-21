@@ -4,8 +4,10 @@
     <!-- HEADER / NAVIGATION -->
     <div class="d-flex align-items-center justify-content-between mb-4">
       <button class="btn btn-outline-secondary d-inline-flex align-items-center" (click)="exitInterview()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
         </svg>
         Exit Session
       </button>
@@ -14,276 +16,344 @@
 
     <!-- IDLE STATE -->
     @if (status() === 'idle') {
-      <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
-        <div class="icon-pulse-container mx-auto mb-4">
-          <div class="pulse-ring"></div>
-          <div class="icon-sphere">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-              <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-              <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.647a.5.5 0 0 0 .5-.5V13h9v.5a.5.5 0 0 0 .5.5h.647a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2zM2 3h12v7H2z"/>
-            </svg>
-          </div>
+    <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
+      <div class="icon-pulse-container mx-auto mb-4">
+        <div class="pulse-ring"></div>
+        <div class="icon-sphere">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+            class="bi bi-person-workspace" viewBox="0 0 16 16">
+            <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+            <path
+              d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.647a.5.5 0 0 0 .5-.5V13h9v.5a.5.5 0 0 0 .5.5h.647a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2zM2 3h12v7H2z" />
+          </svg>
         </div>
-        <h2 class="fw-bold mb-3">AI Interview Practice Session</h2>
-        <p class="text-muted mb-4 max-width-sm mx-auto">
-          Practice your technical and behavioral skills in a simulated voice interview. 
-          The AI interviewer will ask questions aloud, and you can answer using your microphone.
-        </p>
-        <div class="card bg-light border-0 p-4 mb-4 text-start rounded-4">
-          <h5 class="fw-semibold mb-3 d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-info-circle me-2 text-indigo" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-              <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-            </svg>
-            Session Guidelines:
-          </h5>
-          <ul class="text-muted small mb-0 ps-3">
-            <li class="mb-2">Allow microphone access when requested.</li>
-            <li class="mb-2">Ensure you are in a quiet room with minimal background noise.</li>
-            <li class="mb-2">Listen to the AI's question, then speak your response clearly.</li>
-            <li>You can review and edit your transcribed script before submitting.</li>
-          </ul>
-        </div>
-        <button class="btn btn-indigo btn-lg px-5 py-3 rounded-3 shadow-md border-0" (click)="startInterview()">
-          Start Practice Interview
-        </button>
       </div>
+      <h2 class="fw-bold mb-3">AI Interview Practice Session</h2>
+      <p class="text-muted mb-4 max-width-sm mx-auto">
+        Practice your technical and behavioral skills in a simulated voice interview.
+        The AI interviewer will ask questions aloud, and you can answer using your microphone.
+      </p>
+      <div class="card bg-light border-0 p-4 mb-4 text-start rounded-4">
+        <h5 class="fw-semibold mb-3 d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+            class="bi bi-info-circle me-2 text-indigo" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+            <path
+              d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+          </svg>
+          Session Guidelines:
+        </h5>
+        <ul class="text-muted small mb-0 ps-3">
+          <li class="mb-2">Allow microphone access when requested.</li>
+          <li class="mb-2">Ensure you are in a quiet room with minimal background noise.</li>
+          <li class="mb-2">Listen to the AI's question, then speak your response clearly.</li>
+          <li>You can review and edit your transcribed script before submitting.</li>
+        </ul>
+      </div>
+
+      <!-- INTERVIEW SELECTION FILTERS -->
+      <div class="row g-3 mb-4 text-start">
+        <div class="col-sm-6">
+          <label for="practiceTopic" class="form-label fw-semibold text-secondary small">Practice Topic</label>
+          <select id="practiceTopic" name="practiceTopic" class="form-select rounded-3" [(ngModel)]="selectedTopic">
+            <option value="">Any Topic</option>
+            @for (topic of topicsList; track topic) {
+            <option [value]="topic">{{ topic }}</option>
+            }
+          </select>
+        </div>
+        <!--div class="col-sm-6">
+            <label for="practiceJobRole" class="form-label fw-semibold text-secondary small">Target Job Role</label>
+            <select id="practiceJobRole" name="practiceJobRole" class="form-select rounded-3" 
+                    [(ngModel)]="selectedJobRole">
+              <option value="">Any Job Role</option>
+              @for (role of jobRolesList; track role) {
+                <option [value]="role">{{ role }}</option>
+              }
+            </select>
+          </div-->
+      </div>
+
+      <button class="btn btn-indigo btn-lg px-5 py-3 rounded-3 shadow-md border-0" (click)="startInterview()">
+        Start Practice Interview
+      </button>
+    </div>
     }
 
     <!-- LOADING STATE -->
     @if (status() === 'loading') {
-      <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
-        <div class="d-flex flex-column align-items-center py-5">
-          <div class="spinner-border text-indigo mb-4" role="status" style="width: 3.5rem; height: 3.5rem;">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <h4 class="fw-bold mb-2">Preparing Next Question</h4>
-          <p class="text-muted">Analyzing your response and synthesizing the next question...</p>
+    <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
+      <div class="d-flex flex-column align-items-center py-5">
+        <div class="spinner-border text-indigo mb-4" role="status" style="width: 3.5rem; height: 3.5rem;">
+          <span class="visually-hidden">Loading...</span>
         </div>
+        <h4 class="fw-bold mb-2">Preparing Next Question</h4>
+        <p class="text-muted">Analyzing your response and synthesizing the next question...</p>
       </div>
+    </div>
     }
 
     <!-- INTERVIEW ACTIVE STATES -->
     @if (status() === 'speaking' || status() === 'listening' || status() === 'submitting') {
-      <div class="fade-in">
-        
-        <!-- PROGRESS TRACKER -->
-        <div class="mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="text-muted font-monospace small">QUESTION {{ progressIndex() }} OF {{ totalQuestions() }}</span>
-            <span class="badge bg-indigo-subtle text-indigo px-3 py-1 rounded-pill">
-              {{ ((progressIndex() / totalQuestions()) * 100) | number:'1.0-0' }}% Completed
-            </span>
+    <div class="fade-in">
+
+      <!-- PROGRESS TRACKER -->
+      <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="text-muted font-monospace small">QUESTION {{ progressIndex() }} OF {{ totalQuestions() }}</span>
+          <span class="badge bg-indigo-subtle text-indigo px-3 py-1 rounded-pill">
+            {{ ((progressIndex() / totalQuestions()) * 100) | number:'1.0-0' }}% Completed
+          </span>
+        </div>
+        <div class="progress progress-sm">
+          <div class="progress-bar progress-bar-indigo" role="progressbar"
+            [style.width.%]="(progressIndex() / totalQuestions()) * 100"
+            [aria-valuenow]="(progressIndex() / totalQuestions()) * 100" aria-valuemin="0" aria-valuemax="100">
           </div>
-          <div class="progress progress-sm">
-            <div class="progress-bar progress-bar-indigo" role="progressbar" 
-                 [style.width.%]="(progressIndex() / totalQuestions()) * 100" 
-                 [aria-valuenow]="(progressIndex() / totalQuestions()) * 100" 
-                 aria-valuemin="0" aria-valuemax="100">
+        </div>
+      </div>
+
+      <!-- MAIN INTERVIEW PANEL -->
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+
+        <!-- INTERVIEWER MODULE -->
+        <div class="interviewer-header p-4 d-flex align-items-center gap-3">
+          <div class="avatar-circle-wrapper" [class.speaking]="status() === 'speaking'">
+            <div class="avatar-wave-ring"></div>
+            <div class="avatar-face">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-robot"
+                viewBox="0 0 16 16">
+                <path
+                  d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.72 4.225 5.5 5.75 5.5h4.5C11.775 5.5 13 6.72 13 8.062v1.876a3.402 3.402 0 0 1-.822 2.215 1.5 1.5 0 0 1-1.385.723H5.207a1.5 1.5 0 0 1-1.385-.722A3.402 3.402 0 0 1 3 9.938zM5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m5 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0" />
+                <path
+                  d="M7.5 1.5V3H6v1h3V3H8.5V1.5a.5.5 0 0 0-1 0m-2.5 1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-1">AI Interviewer</h5>
+            <div class="d-flex align-items-center gap-1.5">
+              @if (status() === 'speaking') {
+              <span class="spinner-grow spinner-grow-sm text-indigo" role="status"></span>
+              <span class="text-indigo small fw-medium">Speaking Question...</span>
+              } @else if (status() === 'listening') {
+              <span class="text-success small fw-medium d-inline-flex align-items-center">
+                <span class="pulse-indicator-dot me-1.5"></span>
+                Listening for response
+              </span>
+              } @else {
+              <span class="text-muted small">Awaiting Answer</span>
+              }
             </div>
           </div>
         </div>
 
-        <!-- MAIN INTERVIEW PANEL -->
-        <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
-          
-          <!-- INTERVIEWER MODULE -->
-          <div class="interviewer-header p-4 d-flex align-items-center gap-3">
-            <div class="avatar-circle-wrapper" [class.speaking]="status() === 'speaking'">
-              <div class="avatar-wave-ring"></div>
-              <div class="avatar-face">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-robot" viewBox="0 0 16 16">
-                  <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.72 4.225 5.5 5.75 5.5h4.5C11.775 5.5 13 6.72 13 8.062v1.876a3.402 3.402 0 0 1-.822 2.215 1.5 1.5 0 0 1-1.385.723H5.207a1.5 1.5 0 0 1-1.385-.722A3.402 3.402 0 0 1 3 9.938zM5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m5 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0"/>
-                  <path d="M7.5 1.5V3H6v1h3V3H8.5V1.5a.5.5 0 0 0-1 0m-2.5 1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
-                </svg>
-              </div>
-            </div>
-            <div>
-              <h5 class="fw-bold mb-1">AI Interviewer</h5>
-              <div class="d-flex align-items-center gap-1.5">
-                @if (status() === 'speaking') {
-                  <span class="spinner-grow spinner-grow-sm text-indigo" role="status"></span>
-                  <span class="text-indigo small fw-medium">Speaking Question...</span>
-                } @else if (status() === 'listening') {
-                  <span class="text-success small fw-medium d-inline-flex align-items-center">
-                    <span class="pulse-indicator-dot me-1.5"></span>
-                    Listening for response
-                  </span>
-                } @else {
-                  <span class="text-muted small">Awaiting Answer</span>
-                }
-              </div>
-            </div>
-          </div>
-
-          <!-- QUESTION CONTENT -->
-          <div class="question-body p-4 border-bottom bg-slate-subtle">
-            <blockquote class="blockquote mb-0 fs-5 font-serif text-dark-slate">
-              "{{ currentQuestion()?.text }}"
-            </blockquote>
-            <div class="mt-3 d-flex justify-content-end">
-              <button class="btn btn-sm btn-outline-indigo d-inline-flex align-items-center" 
-                      [disabled]="status() === 'speaking'"
-                      (click)="replayQuestion()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-volume-up-fill me-1.5" viewBox="0 0 16 16">
-                  <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"/>
-                  <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"/>
-                  <path d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"/>
-                </svg>
-                Replay Audio
-              </button>
-            </div>
-          </div>
-
-          <!-- RESPONSE / VOICE INPUT SECTION -->
-          <div class="response-body p-4 bg-white">
-            
-            <!-- VOICE WAVE INDICATOR -->
-            <div class="d-flex flex-column align-items-center justify-content-center py-4 mb-3 border border-dashed rounded-4 bg-light-gradient">
-              @if (status() === 'listening') {
-                <div class="voice-wave-container mb-3">
-                  <div class="wave-bar bar-1"></div>
-                  <div class="wave-bar bar-2"></div>
-                  <div class="wave-bar bar-3"></div>
-                  <div class="wave-bar bar-4"></div>
-                  <div class="wave-bar bar-5"></div>
-                  <div class="wave-bar bar-6"></div>
-                  <div class="wave-bar bar-7"></div>
-                  <div class="wave-bar bar-8"></div>
-                </div>
-                <p class="text-success small fw-medium mb-0">Microphone Active — Speak Now</p>
-              } @else if (status() === 'speaking') {
-                <div class="voice-wave-container static mb-3">
-                  <div class="wave-bar bar-1"></div>
-                  <div class="wave-bar bar-2"></div>
-                  <div class="wave-bar bar-3"></div>
-                  <div class="wave-bar bar-4"></div>
-                </div>
-                <p class="text-muted small mb-0">Please listen to the question...</p>
-              } @else {
-                <div class="mic-inactive-container mb-3" (click)="startListening()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-mic-mute text-muted" viewBox="0 0 16 16">
-                    <path d="M13 8c0 .564-.09 1.1-.256 1.6l1.24 1.24A5.96 5.96 0 0 0 15 8v-.5a.5.5 0 0 0-1 0V8c0 1.944-1.042 3.642-2.6 4.577L10.5 11.66a4.978 4.978 0 0 1-1.066.34L8.3 10.871A3.99 3.99 0 0 1 8 11.5a4 4 0 0 1-4-4V7a.5.5 0 0 0-1 0v.5c0 1.91 1.34 3.51 3.15 3.896L4.705 9.95a3.5 3.5 0 0 1-.705-2.45V7a.5.5 0 0 0-1 0v.5c0 .332.03.659.088.975zm-6.8 2.2L7.15 11.15a4.98 4.98 0 0 1-1.65-.63zm6.65-6.65L12 4.4a3.993 3.993 0 0 0-4-1.9a3.993 3.993 0 0 0-4.75 3.75v1.25l-.9-1.3l.6-.6z"/>
-                  </svg>
-                </div>
-                <button class="btn btn-outline-success btn-sm rounded-pill px-3" [disabled]="status() === 'submitting'" (click)="startListening()">
-                  Resume Microphone
-                </button>
-              }
-            </div>
-
-            <!-- DYNAMIC TRANSCRIPT TEXT BOX -->
-            <div class="form-group mb-0">
-              <label class="form-label fw-semibold text-secondary d-flex justify-content-between mb-2">
-                <span>Recorded Transcript:</span>
-                @if (status() === 'listening') {
-                  <span class="text-success blink-animation small font-monospace">Realtime Transcribing...</span>
-                }
-              </label>
-              <textarea class="form-control transcript-textarea rounded-3 border-slate-subtle p-3" 
-                        rows="4" 
-                        placeholder="Your speech transcript will appear here. You can also type or edit your answer directly if needed..."
-                        [value]="transcript()"
-                        [disabled]="status() === 'submitting'"
-                        (input)="updateTranscriptManual($event)">
-              </textarea>
-            </div>
-
-          </div>
-
-          <!-- RESPONSE ACTIONS -->
-          <div class="card-footer p-4 bg-light border-0 d-flex justify-content-between">
-            <div>
-              @if (status() === 'listening') {
-                <button class="btn btn-outline-danger d-inline-flex align-items-center" (click)="stopRecording()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill me-1.5" viewBox="0 0 16 16">
-                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
-                  </svg>
-                  Pause Voice
-                </button>
-              } @else {
-                <button class="btn btn-outline-success d-inline-flex align-items-center" 
-                        [disabled]="status() === 'speaking' || status() === 'submitting'"
-                        (click)="startListening()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill me-1.5" viewBox="0 0 16 16">
-                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-                  </svg>
-                  Speak Answer
-                </button>
-              }
-            </div>
-
-            <button class="btn btn-indigo px-4 d-inline-flex align-items-center shadow-sm"
-                    [disabled]="status() === 'speaking' || status() === 'submitting'"
-                    (click)="submitAnswer()">
-              @if (status() === 'submitting') {
-                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                Submitting...
-              } @else {
-                <span>Submit Answer</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short ms-1.5" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
-                </svg>
-              }
+        <!-- QUESTION CONTENT -->
+        <div class="question-body p-4 border-bottom bg-slate-subtle">
+          <blockquote class="blockquote mb-0 fs-5 font-serif text-dark-slate">
+            "{{ currentQuestion()?.question }}"
+          </blockquote>
+          <div class="mt-3 d-flex justify-content-end">
+            <button class="btn btn-sm btn-outline-indigo d-inline-flex align-items-center"
+              [disabled]="status() === 'speaking'" (click)="replayQuestion()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                class="bi bi-volume-up-fill me-1.5" viewBox="0 0 16 16">
+                <path
+                  d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z" />
+                <path
+                  d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z" />
+                <path
+                  d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06" />
+              </svg>
+              Replay Audio
             </button>
           </div>
+        </div>
 
+        <!-- RESPONSE / VOICE INPUT SECTION -->
+        <div class="response-body p-4 bg-white">
+
+          <!-- VOICE WAVE INDICATOR -->
+          <div
+            class="d-flex flex-column align-items-center justify-content-center py-4 mb-3 border border-dashed rounded-4 bg-light-gradient">
+            @if (status() === 'listening') {
+            <div class="voice-wave-container mb-3">
+              <div class="wave-bar bar-1"></div>
+              <div class="wave-bar bar-2"></div>
+              <div class="wave-bar bar-3"></div>
+              <div class="wave-bar bar-4"></div>
+              <div class="wave-bar bar-5"></div>
+              <div class="wave-bar bar-6"></div>
+              <div class="wave-bar bar-7"></div>
+              <div class="wave-bar bar-8"></div>
+            </div>
+            <p class="text-success small fw-medium mb-0">Microphone Active — Speak Now</p>
+            } @else if (status() === 'speaking') {
+            <div class="voice-wave-container static mb-3">
+              <div class="wave-bar bar-1"></div>
+              <div class="wave-bar bar-2"></div>
+              <div class="wave-bar bar-3"></div>
+              <div class="wave-bar bar-4"></div>
+            </div>
+            <p class="text-muted small mb-0">Please listen to the question...</p>
+            } @else {
+            <div class="mic-inactive-container mb-3" (click)="startListening()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                class="bi bi-mic-mute text-muted" viewBox="0 0 16 16">
+                <path
+                  d="M13 8c0 .564-.09 1.1-.256 1.6l1.24 1.24A5.96 5.96 0 0 0 15 8v-.5a.5.5 0 0 0-1 0V8c0 1.944-1.042 3.642-2.6 4.577L10.5 11.66a4.978 4.978 0 0 1-1.066.34L8.3 10.871A3.99 3.99 0 0 1 8 11.5a4 4 0 0 1-4-4V7a.5.5 0 0 0-1 0v.5c0 1.91 1.34 3.51 3.15 3.896L4.705 9.95a3.5 3.5 0 0 1-.705-2.45V7a.5.5 0 0 0-1 0v.5c0 .332.03.659.088.975zm-6.8 2.2L7.15 11.15a4.98 4.98 0 0 1-1.65-.63zm6.65-6.65L12 4.4a3.993 3.993 0 0 0-4-1.9a3.993 3.993 0 0 0-4.75 3.75v1.25l-.9-1.3l.6-.6z" />
+              </svg>
+            </div>
+            <button class="btn btn-outline-success btn-sm rounded-pill px-3" [disabled]="status() === 'submitting'"
+              (click)="startListening()">
+              Resume Microphone
+            </button>
+            }
+          </div>
+
+          <!-- DYNAMIC TRANSCRIPT TEXT BOX -->
+          <div class="form-group mb-0">
+            <label class="form-label fw-semibold text-secondary d-flex justify-content-between mb-2">
+              <span>Recorded Transcript:</span>
+              @if (status() === 'listening') {
+              <span class="text-success blink-animation small font-monospace">Realtime Transcribing...</span>
+              }
+            </label>
+            <textarea class="form-control transcript-textarea rounded-3 border-slate-subtle p-3" rows="4"
+              placeholder="Your speech transcript will appear here. You can also type or edit your answer directly if needed..."
+              [value]="transcript()" [disabled]="status() === 'submitting'" (input)="updateTranscriptManual($event)">
+              </textarea>
+          </div>
+
+        </div>
+
+        <!-- RESPONSE ACTIONS -->
+        <div class="card-footer p-4 bg-light border-0 d-flex justify-content-between">
+          <div>
+            @if (status() === 'listening') {
+            <button class="btn btn-outline-danger d-inline-flex align-items-center" (click)="stopRecording()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pause-fill me-1.5" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+              </svg>
+              Pause Voice
+            </button>
+            } @else {
+            <button class="btn btn-outline-success d-inline-flex align-items-center"
+              [disabled]="status() === 'speaking' || status() === 'submitting'" (click)="startListening()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-play-fill me-1.5" viewBox="0 0 16 16">
+                <path
+                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+              </svg>
+              Speak Answer
+            </button>
+            }
+          </div>
+
+          <button class="btn btn-indigo px-4 d-inline-flex align-items-center shadow-sm"
+            [disabled]="status() === 'speaking' || status() === 'submitting'" (click)="submitAnswer()">
+            @if (status() === 'submitting') {
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Submitting...
+            } @else {
+            <span>Submit Answer</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-right-short ms-1.5" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8" />
+            </svg>
+            }
+          </button>
         </div>
 
       </div>
+
+    </div>
+    }
+
+    <!-- PREPARING STATE -->
+    @if (status() === 'preparing') {
+    <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
+      <div class="d-flex flex-column align-items-center py-5">
+        <div class="icon-pulse-container mx-auto mb-4">
+          <div class="pulse-ring"></div>
+          <div class="icon-sphere" style="background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%); color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-cpu-fill" viewBox="0 0 16 16">
+              <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+              <path d="M5.5.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5V1h1.5A1.5 1.5 0 0 1 13 2.5V4h.5a.5.5 0 0 1 0 1H13v3h.5a.5.5 0 0 1 0 1H13v3h.5a.5.5 0 0 1 0 1H13v1.5a1.5 1.5 0 0 1-1.5 1.5H10v.5a.5.5 0 0 1-1 0V15H6v.5a.5.5 0 0 1-1 0V15H3.5A1.5 1.5 0 0 1 2 13.5V12h-.5a.5.5 0 0 1 0-1H2V8h-.5a.5.5 0 0 1 0-1H2V4h-.5a.5.5 0 0 1 0-1H2V2.5A1.5 1.5 0 0 1 3.5 1H5zM3 2.5v11A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 11.5 1h-7A1.5 1.5 0 0 0 3 2.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="spinner-border text-indigo mb-4" role="status" style="width: 3.5rem; height: 3.5rem;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <h3 class="fw-bold mb-2">Preparing Your AI Review</h3>
+        <p class="text-muted max-width-sm mx-auto">
+          The AI is evaluating your answers and scoring your responses. Please wait a moment while we compile your final results...
+        </p>
+      </div>
+    </div>
     }
 
     <!-- COMPLETED STATE -->
     @if (status() === 'completed') {
-      <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
-        <div class="icon-pulse-container success mx-auto mb-4">
-          <div class="pulse-ring"></div>
-          <div class="icon-sphere bg-success text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-check2-all" viewBox="0 0 16 16">
-              <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-2.42 3.072.082.38.45.083c.294.07-.352.176-.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533z"/>
-              <path d="M16 3.5a.5.5 0 0 1 0 .708L6.5 13.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 12.293l9.354-9.354a.5.5 0 0 1 .708 0"/>
-            </svg>
-          </div>
-        </div>
-        <h2 class="fw-bold mb-3">Interview Session Completed!</h2>
-        <p class="text-muted mb-4 max-width-sm mx-auto">
-          Fantastic job! You have completed all mock interview questions. 
-          Your voice transcripts have been successfully recorded and processed.
-        </p>
-        <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-indigo px-4 py-2.5 rounded-3 border-0 shadow-sm" (click)="exitInterview()">
-            Back to Dashboard
-          </button>
-          <button class="btn btn-outline-secondary px-4 py-2.5 rounded-3" (click)="startInterview()">
-            Start Again
-          </button>
+    <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
+      <div class="icon-pulse-container success mx-auto mb-4">
+        <div class="pulse-ring"></div>
+        <div class="icon-sphere bg-success text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-check2-all"
+            viewBox="0 0 16 16">
+            <path
+              d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-2.42 3.072.082.38.45.083c.294.07-.352.176-.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533z" />
+            <path
+              d="M16 3.5a.5.5 0 0 1 0 .708L6.5 13.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 12.293l9.354-9.354a.5.5 0 0 1 .708 0" />
+          </svg>
         </div>
       </div>
+      <h2 class="fw-bold mb-3">Interview Session Completed!</h2>
+      <p class="text-muted mb-4 max-width-sm mx-auto">
+        Fantastic job! You have completed all mock interview questions.
+        Your voice transcripts have been successfully recorded and processed.
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-indigo px-4 py-2.5 rounded-3 border-0 shadow-sm" (click)="exitInterview()">
+          Back to Dashboard
+        </button>
+        <button class="btn btn-outline-secondary px-4 py-2.5 rounded-3" (click)="startInterview()">
+          Start Again
+        </button>
+      </div>
+    </div>
     }
 
     <!-- ERROR STATE -->
     @if (status() === 'error') {
-      <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
-        <div class="icon-pulse-container danger mx-auto mb-4">
-          <div class="pulse-ring"></div>
-          <div class="icon-sphere bg-danger text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-              <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
-              <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="fw-bold mb-2">An Error Occurred</h3>
-        <p class="text-muted mb-4">{{ errorMessage() }}</p>
-        <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-indigo px-4 py-2.5" (click)="startInterview()">
-            Retry Session
-          </button>
-          <button class="btn btn-outline-secondary px-4 py-2.5" (click)="exitInterview()">
-            Go Back
-          </button>
+    <div class="card border-0 shadow-lg p-5 text-center state-card fade-in">
+      <div class="icon-pulse-container danger mx-auto mb-4">
+        <div class="pulse-ring"></div>
+        <div class="icon-sphere bg-danger text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+            class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+            <path
+              d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z" />
+            <path
+              d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+          </svg>
         </div>
       </div>
+      <h3 class="fw-bold mb-2">An Error Occurred</h3>
+      <p class="text-muted mb-4">{{ errorMessage() }}</p>
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-indigo px-4 py-2.5" (click)="startInterview()">
+          Retry Session
+        </button>
+        <button class="btn btn-outline-secondary px-4 py-2.5" (click)="exitInterview()">
+          Go Back
+        </button>
+      </div>
+    </div>
     }
 
   </div>

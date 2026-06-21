@@ -1,0 +1,115 @@
+<div class="feedback-page py-5">
+  <div class="container-fluid px-md-5">
+
+    <!-- HEADER / NAVIGATION -->
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <button class="btn btn-outline-secondary d-inline-flex align-items-center" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+        Back to Dashboard
+      </button>
+      <span class="badge bg-indigo-dark text-indigo-light px-3 py-2 text-uppercase fw-bold">Session #{{ sessionId() }} Review</span>
+    </div>
+
+    <!-- MAIN CARD PANEL -->
+    @if (loading()) {
+      <div class="card border-0 custom-card rounded-4 p-5 text-center shadow-lg">
+        <div class="spinner-border text-indigo mb-3" role="status" style="width: 3rem; height: 3rem;"></div>
+        <h4 class="text-white">Fetching AI Review Details</h4>
+        <p class="text-indigo-light">Please wait while we gather all questions and scoring metrics...</p>
+      </div>
+    } @else if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-4 p-4 shadow" role="alert">
+        <h5 class="fw-bold">Failed to Load Feedback</h5>
+        <p class="mb-0">{{ errorMessage() }}</p>
+      </div>
+    } @else {
+      <!-- SUMMARY PANEL -->
+      <div class="card border-0 profile-banner rounded-4 shadow-lg p-4 p-md-5 mb-5">
+        <div class="row align-items-center g-4">
+          <div class="col-md-8">
+            <h2 class="fw-bold text-white mb-2">{{ interviewName() }}</h2>
+            <p class="text-indigo-light mb-0">Detailed review of each answered question, expected reference answers, and custom AI interviewer comments.</p>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <div class="score-display d-inline-block p-4 rounded-4 bg-slate border border-dark-slate-subtle">
+              <span class="text-indigo-light d-block small text-uppercase tracking-wider mb-1">Final Score</span>
+              <h1 class="fw-bold text-white display-4 mb-0">
+                {{ getSessionScore().score }} <span class="fs-4 text-indigo-light">/ {{ getSessionScore().max }}</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTIONS TABLE -->
+      <div class="card border-0 custom-card rounded-4 shadow-sm p-4 overflow-hidden">
+        <h4 class="fw-bold text-white mb-4">Question Logs & AI Evaluation</h4>
+        
+        <div class="table-responsive">
+          <table class="table table-dark align-top border-0 mb-0">
+            <thead>
+              <tr class="text-indigo-light border-bottom border-secondary">
+                <th scope="col" style="width: 5%;" class="pb-3 px-3">Q.ID</th>
+                <th scope="col" style="width: 20%;" class="pb-3">Question</th>
+                <th scope="col" style="width: 15%;" class="pb-3">Reference Answer</th>
+                <th scope="col" style="width: 50%;" class="pb-3">Candidate Answer</th>
+                <th scope="col" style="width: 10%;" class="pb-3 text-center">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (q of questions(); track q.q_id) {
+                <!-- ROW 1: COMPACT DETAILS -->
+                <tr class="align-middle border-top border-dark-slate">
+                  <!-- ID -->
+                  <td class="text-indigo-light fw-bold py-3 px-3">#{{ q.q_id }}</td>
+                  
+                  <!-- QUESTION -->
+                  <td class="py-3 text-white small" style="line-height: 1.5; font-weight: 500;">
+                    {{ q.question }}
+                  </td>
+                  
+                  <!-- REFERENCE ANSWER -->
+                  <td class="py-3">
+                    <div class="expected-reference p-2.5 rounded bg-dark-slate-light small">
+                      <div class="text-indigo-light-subtle" style="white-space: pre-wrap; line-height: 1.4; font-size: 0.85rem;">{{ q.answer }}</div>
+                    </div>
+                  </td>
+                  
+                  <!-- CANDIDATE ANSWER -->
+                  <td class="py-3">
+                    <div class="candidate-response p-2.5 rounded bg-darker small border border-secondary-subtle">
+                      <div class="text-indigo-light" style="white-space: pre-wrap; line-height: 1.4; font-size: 0.85rem;">{{ q.candidate_answer || 'No response recorded.' }}</div>
+                    </div>
+                  </td>
+                  
+                  <!-- SCORE -->
+                  <td class="py-3 text-center">
+                    <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold" [ngClass]="q.score >= 7 ? 'bg-success' : (q.score >= 4 ? 'bg-warning text-dark' : 'bg-danger')">
+                      {{ q.score }} / 10
+                    </span>
+                  </td>
+                </tr>
+                
+                <!-- ROW 2: FULL WIDTH REVIEW COMMENT -->
+                <tr class="border-bottom border-dark-slate">
+                  <td colspan="5" class="pb-4 pt-0 px-3">
+                    <div class="ai-comment-box p-3.5 rounded bg-indigo-dark-subtle border-start border-indigo border-4">
+                      <span class="text-indigo-light small fw-bold d-block mb-2 text-uppercase tracking-wider">AI Review Feedback / llm_comment:</span>
+                      <div class="llm-comment-content text-white">{{ q.llm_comment || 'No comment available.' }}</div>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</div>

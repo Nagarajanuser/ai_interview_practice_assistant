@@ -1,0 +1,15 @@
+.topics-checkbox-list {
+  background-color: #0f172a;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.light-theme {
+  .topics-checkbox-list {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    
+    label {
+      color: #0f172a !important;
+    }
+  }
+}

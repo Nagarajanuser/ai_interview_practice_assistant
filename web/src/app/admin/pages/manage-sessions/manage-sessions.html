@@ -1,0 +1,176 @@
+<div class="admin-container py-5">
+  <div class="container">
+    
+    <!-- BACK TO DASHBOARD -->
+    <div class="mb-3">
+      <a routerLink="/admin" class="btn btn-sm btn-link text-secondary p-0 mb-2 d-inline-flex align-items-center text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        </svg>
+        Back to Dashboard
+      </a>
+    </div>
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <div>
+        <h1 class="fw-bold mb-1 tracking-tight text-white">Interview Sessions</h1>
+        <p class="text-indigo-light mb-0">Monitor active and past candidate sessions, and clear logs as needed.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <a routerLink="/admin/sessions/create" class="btn btn-indigo px-4 py-2.5 rounded-3 border-0 d-inline-flex align-items-center shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+          </svg>
+          Create Session
+        </a>
+        <button (click)="loadSessions()" class="btn btn-outline-light px-4 py-2.5 rounded-3 d-inline-flex align-items-center shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise me-2" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
+          Refresh List
+        </button>
+      </div>
+    </div>
+
+    <!-- ERROR BLOCK -->
+    @if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-4 shadow p-4 mb-4 fade-in" role="alert">
+        <p class="mb-0">{{ errorMessage() }}</p>
+      </div>
+    }
+
+    <!-- LOADING SPINNER -->
+    @if (loading()) {
+      <div class="card border-0 custom-card p-5 text-center fade-in rounded-4">
+        <div class="d-flex flex-column align-items-center py-5">
+          <div class="spinner-border text-indigo mb-3" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h5 class="fw-bold mb-0 text-white">Loading sessions...</h5>
+        </div>
+      </div>
+    } @else {
+      
+      <!-- SESSIONS TABLE -->
+      <div class="card border-0 custom-card rounded-4 overflow-hidden shadow-lg fade-in">
+        <div class="table-responsive">
+          <table class="table table-dark table-hover border-0 align-middle mb-0">
+            <thead>
+              <tr class="text-indigo-light border-bottom border-secondary">
+                <th scope="col" class="px-4 py-3">Session ID</th>
+                <th scope="col" class="py-3">Candidate Name</th>
+                <th scope="col" class="py-3">Interview Name</th>
+                <th scope="col" class="py-3">Questions Count</th>
+                <th scope="col" class="py-3">Created Time</th>
+                <th scope="col" class="py-3">Start Time</th>
+                <th scope="col" class="py-3">End Time</th>
+                <th scope="col" class="py-3 text-center">Status</th>
+                <th scope="col" class="py-3 text-center">Result</th>
+                <th scope="col" class="px-4 py-3 text-end" style="width: 120px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (sessions().length === 0) {
+                <tr>
+                  <td colspan="10" class="text-center py-5 text-muted">No interview sessions recorded.</td>
+                </tr>
+              }
+              @for (session of sessions(); track session.session_id) {
+                <tr class="border-bottom border-dark-slate">
+                  <td class="px-4 text-indigo-light fw-bold py-3">#{{ session.session_id }}</td>
+                  <td class="text-white py-3 fw-semibold">{{ session.user_name }}</td>
+                  <td class="text-white py-3">{{ session.interview_name }}</td>
+                  <td class="text-white py-3">{{ session.total_questions }}</td>
+                  <td class="text-muted py-3">{{ formatDate(session.created_at) }}</td>
+                  <td class="text-muted py-3">{{ session.start_time ? formatDate(session.start_time) : '-' }}</td>
+                  <td class="text-muted py-3">{{ session.end_time ? formatDate(session.end_time) : '-' }}</td>
+                  <td class="text-center py-3">
+                    <span class="badge rounded-pill px-3 py-2 fw-semibold" [ngClass]="getSessionStatusClass(session.status)">
+                      {{ session.status }}
+                    </span>
+                  </td>
+                  <td class="text-center py-3">
+                    @if (session.status?.toUpperCase() === 'COMPLETED') {
+                      @if (session.total_score !== null && session.total_score !== undefined) {
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1.5 rounded-pill fw-bold">
+                          Score: {{ session.total_score }}
+                        </span>
+                      } @else {
+                        <button (click)="checkProgress(session)" class="btn btn-sm btn-indigo px-3 py-1.5 rounded-pill text-xs fw-semibold shadow-sm">
+                          Check Progress
+                        </button>
+                      }
+                    } @else {
+                      <span class="text-muted">-</span>
+                    }
+                  </td>
+                  <td class="px-4 text-end py-3">
+                    <button (click)="deleteSession(session.session_id)" class="btn btn-sm btn-outline-danger rounded-3 d-inline-flex align-items-center p-2" title="Delete Session">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+
+    <!-- CUSTOM STATUS MODAL -->
+    @if (modalOpen()) {
+      <div class="custom-modal-backdrop" (click)="closeModal()">
+        <div class="custom-modal-content card border-0 shadow-2xl rounded-4 p-4 p-md-5 text-center fade-in" (click)="$event.stopPropagation()">
+          
+          <!-- ICON SECTION BASED ON TYPE -->
+          <div class="icon-pulse-container mx-auto mb-4" [ngClass]="modalType()">
+            <div class="pulse-ring"></div>
+            <div class="icon-sphere" [ngClass]="{
+              'bg-success text-white': modalType() === 'success',
+              'bg-warning text-dark': modalType() === 'warning',
+              'bg-danger text-white': modalType() === 'error',
+              'bg-info text-white': modalType() === 'info'
+            }">
+              @if (modalType() === 'success') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              } @else if (modalType() === 'warning') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                </svg>
+              } @else if (modalType() === 'error') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                </svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                </svg>
+              }
+            </div>
+          </div>
+
+          <!-- TITLE & MESSAGE -->
+          <h3 class="fw-bold text-white mb-2">{{ modalTitle() }}</h3>
+          <p class="text-indigo-light-subtle mb-4" style="line-height: 1.6; max-width: 400px; margin: 0 auto; white-space: pre-line;">
+            {{ modalMessage() }}
+          </p>
+
+          <!-- CLOSE BUTTON -->
+          <div class="mt-2">
+            <button class="btn btn-indigo px-5 py-2.5 rounded-3 border-0 shadow-md" (click)="closeModal()">
+              Close
+            </button>
+          </div>
+
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

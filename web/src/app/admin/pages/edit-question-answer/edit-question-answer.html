@@ -1,0 +1,125 @@
+<div class="form-container py-5">
+  <div class="container max-width-md">
+    
+    <!-- HEADER -->
+    <div class="mb-4">
+      <a routerLink="/admin" class="btn btn-sm btn-link text-secondary p-0 mb-2 d-inline-flex align-items-center text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        </svg>
+        Back to list
+      </a>
+      <h2 class="fw-bold tracking-tight text-dark-slate mb-1">Edit Question #{{ questionId() }}</h2>
+      <p class="text-muted">Modify the selected question, answer model, or scoring notes.</p>
+    </div>
+
+    <!-- ERROR NOTIFICATION -->
+    @if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-3 shadow-sm p-3 mb-4 fade-in" role="alert">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <!-- LOADING DETAILS -->
+    @if (loading()) {
+      <div class="card border-0 shadow-sm p-5 text-center fade-in">
+        <div class="d-flex flex-column align-items-center py-4">
+          <div class="spinner-border text-indigo mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mb-0 text-muted">Retrieving details from database...</p>
+        </div>
+      </div>
+    } @else {
+      
+      <!-- FORM CARD -->
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <form (ngSubmit)="updateQA()" #qaForm="ngForm" class="p-4 p-md-5">
+          
+          <!-- ROW 1: TOPIC & JOB ROLE -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label for="topic" class="form-label fw-semibold text-secondary">Topic <span class="text-danger">*</span></label>
+              <select id="topic" name="topic" class="form-select rounded-3" required 
+                      [(ngModel)]="qaData.topic" #topicCtrl="ngModel"
+                      [class.is-invalid]="topicCtrl.invalid && topicCtrl.touched">
+                <option value="" disabled selected>Select a Topic</option>
+                @for (topic of topicsList(); track topic) {
+                  <option [value]="topic">{{ topic }}</option>
+                }
+              </select>
+              <div class="invalid-feedback">Topic is required.</div>
+            </div>
+            
+            <div class="col-md-6">
+              <label for="job_role" class="form-label fw-semibold text-secondary">Job Role</label>
+              <select id="job_role" name="job_role" class="form-select rounded-3" 
+                      [(ngModel)]="qaData.job_role" #jobRoleCtrl="ngModel">
+                <option value="">Select a Job Role (Optional)</option>
+                @for (role of jobRolesList(); track role) {
+                  <option [value]="role">{{ role }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <!-- ROW 2: DIFFICULTY -->
+          <div class="mb-4">
+            <label for="difficulty" class="form-label fw-semibold text-secondary">Difficulty Level</label>
+            <select id="difficulty" name="difficulty" class="form-select rounded-3" 
+                    [(ngModel)]="qaData.difficulty">
+              <option value="">Select Difficulty (Optional)</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+
+          <!-- ROW 3: QUESTION -->
+          <div class="mb-4">
+            <label for="question" class="form-label fw-semibold text-secondary">Question Text <span class="text-danger">*</span></label>
+            <textarea id="question" name="question" class="form-control rounded-3" rows="3" 
+                      placeholder="Enter the full question text..." required 
+                      [(ngModel)]="qaData.question" #questionCtrl="ngModel"
+                      [class.is-invalid]="questionCtrl.invalid && questionCtrl.touched"></textarea>
+            <div class="invalid-feedback">Question text is required.</div>
+          </div>
+
+          <!-- ROW 4: MODEL ANSWER -->
+          <div class="mb-4">
+            <label for="answer" class="form-label fw-semibold text-secondary">Model Answer <span class="text-danger">*</span></label>
+            <textarea id="answer" name="answer" class="form-control rounded-3" rows="4" 
+                      placeholder="Enter the model answer..." required 
+                      [(ngModel)]="qaData.answer" #answerCtrl="ngModel"
+                      [class.is-invalid]="answerCtrl.invalid && answerCtrl.touched"></textarea>
+            <div class="invalid-feedback">Model answer is required.</div>
+          </div>
+
+          <!-- ROW 5: COMMENT -->
+          <div class="mb-5">
+            <label for="answer_comment" class="form-label fw-semibold text-secondary">Evaluation Comment / Criteria</label>
+            <textarea id="answer_comment" name="answer_comment" class="form-control rounded-3" rows="3" 
+                      placeholder="Describe specific evaluation guidelines..."
+                      [(ngModel)]="qaData.answer_comment"></textarea>
+          </div>
+
+          <!-- FORM ACTIONS -->
+          <div class="d-flex justify-content-end gap-3 border-top pt-4">
+            <a routerLink="/admin" class="btn btn-outline-secondary px-4 py-2.5 rounded-3">Cancel</a>
+            <button type="submit" class="btn btn-indigo px-5 py-2.5 rounded-3 border-0 shadow-sm" 
+                    [disabled]="qaForm.invalid || submitting()">
+              @if (submitting()) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Updating...
+              } @else {
+                Update Question
+              }
+            </button>
+          </div>
+
+        </form>
+      </div>
+    }
+
+  </div>
+</div>

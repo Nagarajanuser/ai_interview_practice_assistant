@@ -1,0 +1,83 @@
+<div class="form-container py-5">
+  <div class="container max-width-md">
+    
+    <!-- BACK -->
+    <div class="mb-4">
+      <a routerLink="/admin/roles" class="btn btn-sm btn-link text-secondary p-0 mb-2 d-inline-flex align-items-center text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        </svg>
+        Back to Roles
+      </a>
+      <h2 class="fw-bold tracking-tight text-white mb-1">Edit Job Role: {{ oldRoleName }}</h2>
+      <p class="text-secondary">Modify the job role name or update its mapped technical topics.</p>
+    </div>
+
+    <!-- ERROR -->
+    @if (errorMessage()) {
+      <div class="alert alert-danger border-0 rounded-3 p-3 mb-4 fade-in" role="alert">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <!-- LOADING -->
+    @if (loading()) {
+      <div class="card border-0 p-5 text-center fade-in">
+        <div class="d-flex flex-column align-items-center py-4">
+          <div class="spinner-border text-indigo mb-3" role="status">
+            <span class="visually-hidden">Loading details...</span>
+          </div>
+          <p class="mb-0 text-muted">Retrieving details from database...</p>
+        </div>
+      </div>
+    } @else {
+      <!-- FORM CARD -->
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <form (ngSubmit)="updateRole()" #roleForm="ngForm" class="p-4 p-md-5">
+          
+          <!-- ROLE NAME -->
+          <div class="mb-4">
+            <label for="roleName" class="form-label fw-semibold">Job Role Name <span class="text-danger">*</span></label>
+            <input type="text" id="roleName" name="roleName" class="form-control rounded-3" 
+                   required [(ngModel)]="editRoleNewName" #nameCtrl="ngModel"
+                   [class.is-invalid]="nameCtrl.invalid && nameCtrl.touched">
+            <div class="invalid-feedback">Job role name is required.</div>
+          </div>
+
+          <!-- MAPPED TOPICS -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Map to Topics</label>
+            <div class="topics-checkbox-list border border-secondary rounded-3 p-3 bg-dark-slate" style="max-height: 250px; overflow-y: auto;">
+              @for (topic of topicsList(); track topic) {
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" [id]="'editTopicCheckbox_' + topic"
+                         [checked]="selectedTopics().includes(topic)" (change)="toggleTopic(topic)">
+                  <label class="form-check-label text-white small" [for]="'editTopicCheckbox_' + topic">
+                    {{ topic }}
+                  </label>
+                </div>
+              }
+            </div>
+            <p class="text-secondary small mt-2">Updating the name will cascade to all questions matching this job role.</p>
+          </div>
+
+          <!-- FORM ACTIONS -->
+          <div class="d-flex justify-content-end gap-3 border-top pt-4 mt-5">
+            <a routerLink="/admin/roles" class="btn btn-outline-secondary px-4 py-2.5 rounded-3">Cancel</a>
+            <button type="submit" class="btn btn-indigo px-5 py-2.5 rounded-3 border-0 shadow-sm" 
+                    [disabled]="roleForm.invalid || submitting()">
+              @if (submitting()) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Saving...
+              } @else {
+                Save Changes
+              }
+            </button>
+          </div>
+
+        </form>
+      </div>
+    }
+
+  </div>
+</div>
