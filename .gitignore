@@ -1,7 +1,19 @@
 
+# Environment Variables
 .env
 venv/
+.venv/
+
+# Python Cache
 __pycache__/
+*.py[cod]
+*$py.class
+
+# Build Files
+build/
+dist/
+*.egg-info/
+
 .vscode/
 logs/
 uploads/
@@ -13,13 +25,13 @@ cache/
 
 
 # Compiled output
-/dist
+dist/
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
-/node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
